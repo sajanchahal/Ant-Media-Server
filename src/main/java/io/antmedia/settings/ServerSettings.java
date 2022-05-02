@@ -186,6 +186,7 @@ public class ServerSettings implements ApplicationContextAware {
 
 	public static final String SETTINGS_JWT_SERVER_SECRET_KEY = "server.jwtServerSecretKey";
 
+
 	/**
 	 * Server JWT secret key
 	 * "afw7Zz9MqvLiheA5X3GFEKvLWb1JTKC2"
@@ -193,6 +194,9 @@ public class ServerSettings implements ApplicationContextAware {
 	 */
 	@Value( "${"+SETTINGS_JWT_SERVER_SECRET_KEY+":#{null}}" )
 	private String jwtServerSecretKey;
+	
+	
+	private String privateIpAdress;
 
 	public String getJwtServerSecretKey() {
 		return jwtServerSecretKey;
@@ -312,7 +316,7 @@ public class ServerSettings implements ApplicationContextAware {
 	}
 	
 	public static String getLocalHostAddress() {
-
+		
 		if (localHostAddress == null) {
 			long startTime = System.currentTimeMillis();
 			try {
@@ -517,6 +521,17 @@ public class ServerSettings implements ApplicationContextAware {
 
 	public void setMarketplace(String marketplace) {
 		this.marketplace = marketplace;
+	}
+
+	public String getPrivateIpAdress() {
+		return privateIpAdress;
+	}
+
+	public void setPrivateIpAdress(String privateIpAdress) {
+		this.privateIpAdress = privateIpAdress;
+		if(privateIpAdress != null) {
+			localHostAddress = privateIpAdress;
+		}
 	}
 
 

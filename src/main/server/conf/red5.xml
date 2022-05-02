@@ -55,8 +55,9 @@
 		<property name="contextLoader" ref="context.loader" />
 	</bean>
 
-	<bean id="ant.media.server.settings" class="io.antmedia.settings.ServerSettings"/>
-	
+	<bean id="ant.media.server.settings" class="io.antmedia.settings.ServerSettings">
+        <property name="privateIpAdress" value="something" />
+	</bean>    	
 
 	<bean id="ant.media.licence.service" class="#{ T(io.antmedia.rest.RestServiceBase).isEnterprise() ? 'io.antmedia.enterprise.licence.LicenceService' : 'io.antmedia.licence.CommunityLicenceService' }"
 	init-method="start">
